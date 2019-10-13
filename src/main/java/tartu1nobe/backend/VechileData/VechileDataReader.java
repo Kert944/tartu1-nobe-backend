@@ -1,9 +1,9 @@
 package tartu1nobe.backend.VechileData;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import tartu1nobe.backend.Vechile.Car;
+
+import java.io.*;
 import java.util.stream.Collectors;
 
 public class VechileDataReader {
@@ -22,6 +22,11 @@ public class VechileDataReader {
     }
 
     public static String getVechileId(String content){
+        try {
+            return new ObjectMapper().readValue(content, Car.class).getCarId();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         return "";
     }
 }

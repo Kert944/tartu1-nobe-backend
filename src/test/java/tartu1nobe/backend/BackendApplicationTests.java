@@ -14,6 +14,7 @@ import java.io.FileNotFoundException;
 public class BackendApplicationTests {
 
     private String fileName = "src/test-data/test-data-1";
+    private String nonExistantFileName = "src/test-data/non-existent-file";
 
 
     @Test
@@ -38,11 +39,26 @@ public class BackendApplicationTests {
     }
 
     @Test
-    public void givenNoFile_emptyStringIsReturned() {
-        String nonExistantFilePath = "src/test-data/non-existent-file";
-        Assert.assertEquals("", VechileDataReader.readFromFile(nonExistantFilePath));
-        Assert.assertEquals("", VechileDataReader.getVechileId(nonExistantFilePath));
-        Assert.assertEquals("", VechileDataReader.getVechileBatteryPercentage(nonExistantFilePath));
+    public void givenNoFile_emptyContentIsReturned() {
+        String result = VechileDataReader.readFromFile(nonExistantFileName);
+
+        Assert.assertEquals("", result);
     }
+
+    @Test
+    public void givenNoFile_emptyCarIdIsReturned() {
+        String result = VechileDataReader.getVechileId(nonExistantFileName);
+
+        Assert.assertEquals("", result);
+    }
+
+    @Test
+    public void givenNoFile_emptyBatteryPercentageIsReturned() {
+        String result = VechileDataReader.getVechileBatteryPercentage(nonExistantFileName);
+
+        Assert.assertEquals("", result);
+    }
+
+
 
 }

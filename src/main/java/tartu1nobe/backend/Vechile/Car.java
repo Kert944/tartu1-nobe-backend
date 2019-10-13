@@ -12,4 +12,12 @@ public class Car {
         return batteryPercentage;
     }
 
+    public void setBatteryPercentage(String batteryPercentage) {
+        this.batteryPercentage = batteryPercentage;
+    }
+
+    public String getChargingText() {
+        return null;
+    }
+
 }

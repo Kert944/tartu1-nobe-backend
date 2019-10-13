@@ -17,7 +17,26 @@ public class Car {
     }
 
     public String getChargingText() {
-        return null;
+        int batteryPercentage = getBatteryPercentageAsInt();
+        if (batteryPercentage <= 5) {
+            return "Battery percentage critically low!";
+        }
+        else if (batteryPercentage <= 15) {
+            return "Battery percentage very low";
+        }
+        else if (batteryPercentage <= 30) {
+            return "Battery running low";
+        }
+        else if (batteryPercentage == 100) {
+            return "Battery full";
+        }
+        else {
+            return "Battery percentage OK";
+        }
+    }
+
+    private int getBatteryPercentageAsInt() {
+        return Integer.parseInt(batteryPercentage.substring(0, batteryPercentage.length() -1));
     }
 
 }

@@ -31,6 +31,11 @@ public class VechileDataReader {
     }
 
     public static String getVechileBatteryPercentage(String content) {
+        try {
+            return new ObjectMapper().readValue(content, Car.class).getBatteryPercentage();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         return "";
     }
 }

@@ -17,7 +17,7 @@ public class BackendApplicationTests {
 
         String result = VechileDataReader.readFromFile(fileName);
 
-        Assert.assertEquals("{\"carId\": \"1\"}\n", result);
+        Assert.assertEquals("{\"carId\": \"1\"}", result);
     }
 
 }

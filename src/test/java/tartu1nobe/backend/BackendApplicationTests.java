@@ -28,4 +28,11 @@ public class BackendApplicationTests {
         Assert.assertEquals("nob001", result);
     }
 
+    @Test
+    public void givenFileContent_batteryPercentageIsReturned() {
+        String result = VechileDataReader.getVechileBatteryPercentage(VechileDataReader.readFromFile(fileName));
+
+        Assert.assertEquals("90%", result);
+    }
+
 }

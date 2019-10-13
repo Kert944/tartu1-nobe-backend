@@ -29,4 +29,8 @@ public class VechileDataReader {
         }
         return "";
     }
+
+    public static String getVechileBatteryPercentage(String content) {
+        return "";
+    }
 }

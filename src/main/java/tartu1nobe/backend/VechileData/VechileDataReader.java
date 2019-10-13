@@ -22,20 +22,21 @@ public class VechileDataReader {
     }
 
     public static String getVechileId(String content){
-        try {
-            return new ObjectMapper().readValue(content, Car.class).getCarId();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return "";
+        Car car = getCarFromContent(content);
+        return car != null ? car.getCarId() : "";
     }
 
     public static String getVechileBatteryPercentage(String content) {
+        Car car = getCarFromContent(content);
+        return car != null ? car.getBatteryPercentage() : "";
+    }
+
+    private static Car getCarFromContent(String content) {
         try {
-            return new ObjectMapper().readValue(content, Car.class).getBatteryPercentage();
+            return new ObjectMapper().readValue(content, Car.class);
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return "";
+        return null;
     }
 }

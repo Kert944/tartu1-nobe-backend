@@ -12,12 +12,8 @@ import tartu1nobe.backend.VechileData.VechileDataReader;
 public class BackendApplicationTests {
 
     @Test
-    public void givenFileName_contentIsReturned() {
-        String fileName = "src/test-data/test-data-1";
+    public void voidtest() {
 
-        String result = VechileDataReader.readFromFile(fileName);
-
-        Assert.assertEquals("{\"carId\": \"1\"}\n", result);
     }
 
 }

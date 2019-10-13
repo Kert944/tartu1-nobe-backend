@@ -11,13 +11,21 @@ import tartu1nobe.backend.VechileData.VechileDataReader;
 @SpringBootTest
 public class BackendApplicationTests {
 
+    private String fileName = "src/test-data/test-data-1";
+
+
     @Test
     public void givenFileName_contentIsReturned() {
-        String fileName = "src/test-data/test-data-1";
-
         String result = VechileDataReader.readFromFile(fileName);
 
-        Assert.assertEquals("{\"carId\": \"1\"}", result);
+        Assert.assertEquals("{\"carId\": \"nob001\"}", result);
+    }
+
+    @Test
+    public void givenFileContent_carIdIsReturned() {
+        String result = VechileDataReader.getVechileId(VechileDataReader.readFromFile(fileName));
+
+        Assert.assertEquals("nob001", result);
     }
 
 }

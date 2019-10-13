@@ -20,4 +20,8 @@ public class VechileDataReader {
         }
         return "";
     }
+
+    public static String getVechileId(String content){
+        return "";
+    }
 }

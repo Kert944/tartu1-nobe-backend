@@ -76,14 +76,26 @@ public class Car {
     }
 
     public void openAllWindows() {
+        for (Window window : windows) {
+            window.open();
+        }
     }
 
     public void closeAllWindows() {
+        for (Window window : windows) {
+            window.close();
+        }
     }
 
     public void openAllWindows(int openedPercentage) {
+        for (Window window : windows) {
+            window.open(openedPercentage);
+        }
     }
 
     public void closeAllWindows(int openedPercentage) {
+        for (Window window : windows) {
+            window.close(openedPercentage);
+        }
     }
 }

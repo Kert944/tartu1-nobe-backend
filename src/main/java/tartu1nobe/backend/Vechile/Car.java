@@ -48,10 +48,6 @@ public class Car {
         return windows;
     }
 
-    public void setWindows(List<Window> windows) {
-        this.windows = windows;
-    }
-
     public String getChargingText() {
         int batteryPercentage = getBatteryPercentageAsInt();
         if (batteryPercentage <= 5) {

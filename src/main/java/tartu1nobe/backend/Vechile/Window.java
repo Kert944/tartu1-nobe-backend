@@ -1,6 +1,7 @@
 package tartu1nobe.backend.Vechile;
 
 public class Window {
+    private static final int MAXIMUM_OPEN_PERCENTAGE = 100;
     private String id;
     private OpenedClosedStatus status;
     private int openedPercentage;
@@ -18,28 +19,44 @@ public class Window {
     }
 
     public void open(int amountInPercentage) {
-        //TODO: Implement
+        if (openedPercentage == 0 && amountInPercentage > 0) {
+            status = OpenedClosedStatus.OPENED;
+        }
+        if (openedPercentage + amountInPercentage > MAXIMUM_OPEN_PERCENTAGE) {
+            openedPercentage = MAXIMUM_OPEN_PERCENTAGE;
+        }
+        else {
+            openedPercentage += amountInPercentage;
+        }
     }
 
     public void close(int amountInPercentage) {
-        //TODO: Implement
+        if (openedPercentage != 0 && openedPercentage - amountInPercentage <= 0) {
+            status = OpenedClosedStatus.CLOSED;
+        }
+        if (openedPercentage - amountInPercentage <= 0) {
+            openedPercentage = 0;
+        }
+        else {
+            openedPercentage -= amountInPercentage;
+        }
     }
 
     public void close() {
-        //TODO: Implement
+        status = OpenedClosedStatus.CLOSED;
+        openedPercentage = 0;
     }
 
     public void open() {
-        //TODO: Implement
+        status = OpenedClosedStatus.OPENED;
+        openedPercentage = 100;
     }
 
     public boolean isOpened() {
-        //TODO: Implement
-        return false;
+        return OpenedClosedStatus.OPENED.equals(status);
     }
 
     public boolean isClosed() {
-        //TODO: Implement
-        return false;
+        return OpenedClosedStatus.CLOSED.equals(status);
     }
 }

@@ -6,8 +6,13 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
+import tartu1nobe.backend.Vechile.Car;
 import tartu1nobe.backend.Vechile.OpenedClosedStatus;
 import tartu1nobe.backend.Vechile.Window;
+
+import javax.validation.constraints.AssertTrue;
+import java.util.Arrays;
+import java.util.List;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -85,5 +90,49 @@ public class CarWdindowsTests {
         window.close(120);
         Assert.assertTrue(window.isClosed());
         Assert.assertEquals(0, window.getOpenedPercentage());
+    }
+
+    @Test
+    public void initCarWithWindowsTest() {
+        Car car = new Car("001", "100%");
+        Assert.assertEquals(4, car.getWindows().size());
+        Assert.assertEquals(0, car.getWindows().get(0).getOpenedPercentage());
+        Assert.assertEquals(0, car.getWindows().get(1).getOpenedPercentage());
+        Assert.assertEquals(0, car.getWindows().get(2).getOpenedPercentage());
+        Assert.assertEquals(0, car.getWindows().get(3).getOpenedPercentage());
+    }
+
+    @Test
+    public void setCarWindowsTest() {
+        Car car = new Car("001", "100%");
+        car.setWindowsOpenedPercentages(Arrays.asList(50,50,50,50));
+        List<Window> windows = car.getWindows();
+        for (Window window : windows) {
+            Assert.assertEquals(50, window.getOpenedPercentage());
+            Assert.assertTrue(window.isOpened());
+        }
+    }
+
+    @Test
+    public void openAllCarWindowsTest() {
+        Car car = new Car("001", "100%");
+        car.openAllWindows();
+        List<Window> windows = car.getWindows();
+        for (Window window : windows) {
+            Assert.assertEquals(Window.MAXIMUM_OPEN_PERCENTAGE, window.getOpenedPercentage());
+            Assert.assertTrue(window.isOpened());
+        }
+    }
+
+    @Test
+    public void closeAllCarWindowsTest() {
+        Car car = new Car("001", "100%");
+        car.setWindowsOpenedPercentages(Arrays.asList(50,50,50,50));
+        car.closeAllWindows();
+        List<Window> windows = car.getWindows();
+        for (Window window : windows) {
+            Assert.assertEquals(0, window.getOpenedPercentage());
+            Assert.assertTrue(window.isClosed());
+        }
     }
 }

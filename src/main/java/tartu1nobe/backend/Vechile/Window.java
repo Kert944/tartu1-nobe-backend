@@ -1,7 +1,7 @@
 package tartu1nobe.backend.Vechile;
 
 public class Window {
-    private static final int MAXIMUM_OPEN_PERCENTAGE = 100;
+    public static final int MAXIMUM_OPEN_PERCENTAGE = 100;
     private String id;
     private OpenedClosedStatus status;
     private int openedPercentage;

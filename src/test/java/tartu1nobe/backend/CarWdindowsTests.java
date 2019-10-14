@@ -10,8 +10,6 @@ import tartu1nobe.backend.Vechile.Car;
 import tartu1nobe.backend.Vechile.OpenedClosedStatus;
 import tartu1nobe.backend.Vechile.Window;
 
-import javax.validation.constraints.AssertTrue;
-import java.util.Arrays;
 import java.util.List;
 
 @RunWith(SpringRunner.class)
@@ -103,17 +101,6 @@ public class CarWdindowsTests {
     }
 
     @Test
-    public void setCarWindowsTest() {
-        Car car = new Car("001", "100%");
-        car.setWindowsOpenedPercentages(Arrays.asList(50,50,50,50));
-        List<Window> windows = car.getWindows();
-        for (Window window : windows) {
-            Assert.assertEquals(50, window.getOpenedPercentage());
-            Assert.assertTrue(window.isOpened());
-        }
-    }
-
-    @Test
     public void openAllCarWindowsTest() {
         Car car = new Car("001", "100%");
         car.openAllWindows();
@@ -127,11 +114,34 @@ public class CarWdindowsTests {
     @Test
     public void closeAllCarWindowsTest() {
         Car car = new Car("001", "100%");
-        car.setWindowsOpenedPercentages(Arrays.asList(50,50,50,50));
+        car.openAllWindows();
         car.closeAllWindows();
         List<Window> windows = car.getWindows();
         for (Window window : windows) {
             Assert.assertEquals(0, window.getOpenedPercentage());
+            Assert.assertTrue(window.isClosed());
+        }
+    }
+
+    @Test
+    public void openAllCarWindowsByPercentTest() {
+        Car car = new Car("001", "100%");
+        car.openAllWindows(30);
+        List<Window> windows = car.getWindows();
+        for (Window window : windows) {
+            Assert.assertEquals(30, window.getOpenedPercentage());
+            Assert.assertTrue(window.isOpened());
+        }
+    }
+
+    @Test
+    public void closeAllCarWindowsByPercentTest() {
+        Car car = new Car("001", "100%");
+        car.openAllWindows(50);
+        car.closeAllWindows(30);
+        List<Window> windows = car.getWindows();
+        for (Window window : windows) {
+            Assert.assertEquals(20, window.getOpenedPercentage());
             Assert.assertTrue(window.isClosed());
         }
     }

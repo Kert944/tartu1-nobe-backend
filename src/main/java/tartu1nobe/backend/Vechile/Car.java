@@ -75,12 +75,15 @@ public class Car {
         return Integer.parseInt(batteryPercentage.substring(0, batteryPercentage.length() -1));
     }
 
-    public void setWindowsOpenedPercentages(List<Integer> windowsOpenedPercentages) {
-    }
-
     public void openAllWindows() {
     }
 
     public void closeAllWindows() {
+    }
+
+    public void openAllWindows(int openedPercentage) {
+    }
+
+    public void closeAllWindows(int openedPercentage) {
     }
 }

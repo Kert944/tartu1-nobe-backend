@@ -20,36 +20,36 @@ public class Window {
 
     public void open(int amountInPercentage) {
         if (openedPercentage == 0 && amountInPercentage > 0) {
-            status = OpenedClosedStatus.OPENED;
+            setStatus(OpenedClosedStatus.OPENED);
         }
         if (openedPercentage + amountInPercentage > MAXIMUM_OPEN_PERCENTAGE) {
-            openedPercentage = MAXIMUM_OPEN_PERCENTAGE;
+            setOpenedPercentage(MAXIMUM_OPEN_PERCENTAGE);
         }
         else {
-            openedPercentage += amountInPercentage;
+            setOpenedPercentage(openedPercentage + amountInPercentage);
         }
     }
 
     public void close(int amountInPercentage) {
         if (openedPercentage != 0 && openedPercentage - amountInPercentage <= 0) {
-            status = OpenedClosedStatus.CLOSED;
+            setStatus(OpenedClosedStatus.CLOSED);
         }
         if (openedPercentage - amountInPercentage <= 0) {
-            openedPercentage = 0;
+            setOpenedPercentage(0);
         }
         else {
-            openedPercentage -= amountInPercentage;
+            setOpenedPercentage(openedPercentage - amountInPercentage);
         }
     }
 
     public void close() {
-        status = OpenedClosedStatus.CLOSED;
-        openedPercentage = 0;
+        setStatus(OpenedClosedStatus.CLOSED);
+        setOpenedPercentage(0);
     }
 
     public void open() {
-        status = OpenedClosedStatus.OPENED;
-        openedPercentage = 100;
+        setStatus(OpenedClosedStatus.OPENED);
+        setOpenedPercentage(100);
     }
 
     public boolean isOpened() {

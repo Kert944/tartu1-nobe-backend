@@ -142,7 +142,7 @@ public class CarWdindowsTests {
         List<Window> windows = car.getWindows();
         for (Window window : windows) {
             Assert.assertEquals(20, window.getOpenedPercentage());
-            Assert.assertTrue(window.isClosed());
+            Assert.assertTrue(window.isOpened());
         }
     }
 }
